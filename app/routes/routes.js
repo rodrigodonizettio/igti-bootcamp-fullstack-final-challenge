@@ -44,4 +44,13 @@ transactionRouter.patch('/:id', async (req, res) => {
   }
 })
 
+transactionRouter.delete('/:id', async (req, res) => {
+  try {
+    const transaction = await TransactionModel.findOneAndDelete({_id: req.params.id})
+    res.status(200).send(req.params.id)
+  } catch (error) {
+    res.status(404).send(`Transaction ID ${req.params.id} was not found! ${error}`)
+  }
+});
+
 module.exports = transactionRouter;
