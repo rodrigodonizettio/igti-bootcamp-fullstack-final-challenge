@@ -29,4 +29,19 @@ transactionRouter.post('/', async (req, res) => {
   }
 })
 
+transactionRouter.patch('/:id', async (req, res) => {
+  try {
+    if (!req.body)
+      return res.status(400).send('PATCH /:id Fail! Body cannot be empty!');
+    const transaction = await TransactionModel.findOneAndUpdate({_id: req.params.id}, req.body, {new: true})
+    if(transaction) {
+      res.status(200).send(transaction)
+    } else {
+      res.status(404).send(`Transaction ID ${req.params.id} was not found!`)
+    }
+  } catch (error) {
+    res.status(501).send('PATCH /:id Fail!' + error)
+  }
+})
+
 module.exports = transactionRouter;
