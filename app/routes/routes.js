@@ -19,4 +19,14 @@ transactionRouter.get('/', async (req, res) => {
   }
 })
 
+transactionRouter.post('/', async (req, res) => {
+  try {
+    const transaction = new TransactionModel(req.body)
+    await transaction.save()
+    res.status(201).send(transaction)
+  } catch (error) {
+    res.status(501).send('POST / Fail! ' + error)
+  }
+})
+
 module.exports = transactionRouter;
