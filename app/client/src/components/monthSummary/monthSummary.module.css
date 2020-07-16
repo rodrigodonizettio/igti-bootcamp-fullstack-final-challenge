@@ -1,0 +1,15 @@
+.marginTop {
+  margin: 20px;
+  border: 1px gray solid;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.flexRowBetween {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
