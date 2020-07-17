@@ -2,15 +2,17 @@ import React from 'react'
 
 import css from './register.module.css'
 
-const handleButtonEdit = () => {
-  console.log('Edit!')
-}
+export default function Register(props) {
+  const { onEditRegisterClick, onDeleteRegisterClick } = props
 
-const handleButtonDelete = () => {
-  console.log('Delete!')
-}
+  const handleButtonEdit = () => {
+    onEditRegisterClick()
+  }
+  
+  const handleButtonDelete = () => {
+    onDeleteRegisterClick(1)
+  }
 
-export default function Register() {
   return (
     <div className={css.border}>
       <span className={css.category}>Mercado</span>
