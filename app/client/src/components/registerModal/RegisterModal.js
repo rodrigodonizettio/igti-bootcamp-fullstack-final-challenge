@@ -40,7 +40,7 @@ export default function RegisterModal(props) {
         </div>
         <form onSubmit={handleFormSubmit}>
           <div>
-            <input id="inputInput" name="type" type="radio" value="input" checked />
+            <input id="inputInput" name="type" type="radio" value="input" defaultChecked />
             <label className={css.radio} htmlFor="inputInput">Input</label>
             <input id="inputOutput" name="type" type="radio" value="output" />
             <label className={css.radio} htmlFor="inputOutput">Output</label>
