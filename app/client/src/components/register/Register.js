@@ -1,37 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import css from './register.module.css'
+import { useEffect } from 'react'
 
 export default function Register(props) {
-  const { onEditRegisterClick, onDeleteRegisterClick } = props
+  const { onFilterChangeByPeriod, onEditRegisterClick, onDeleteRegisterClick } = props
+
+  const [day, setDay] = useState('')
+  const [category, setCategory] = useState('')
+  const [description, setDescription] = useState('')
+  const [value, setValue] = useState('')
+
+  useEffect(() => {
+    setDay(onFilterChangeByPeriod.day)
+    setCategory(onFilterChangeByPeriod.category)
+    setDescription(onFilterChangeByPeriod.description)
+    setValue(onFilterChangeByPeriod.value)
+  }, [])
 
   const handleButtonEdit = () => {
-    onEditRegisterClick()
+    onEditRegisterClick(onFilterChangeByPeriod)
   }
   
   const handleButtonDelete = () => {
-    onDeleteRegisterClick(1)
+    onDeleteRegisterClick(onFilterChangeByPeriod._id)
   }
 
   return (
     <div className={css.border}>
-      <span className={css.category}>Mercado</span>
-      <span className={css.description}>Compras em Padaria</span>
-      <span className={css.value}>R$ 16</span>
+      <span className={css.description}>{`Day#${day}`}</span>
+      <span className={css.category}>{category}</span>
+      <span className={css.description}>{description}</span>
+      <span className={css.value}>{`R$ ${value}`}</span>
       <button className={`${css.button} waves-effect waves-light btn blue darken-4`} onClick={handleButtonEdit}><i className={`${css.a} material-icons`}>edit</i></button>
       <button className={`${css.button} waves-effect waves-light btn red darken-4`} onClick={handleButtonDelete}><i className={`${css.a} material-icons`}>delete_forever</i></button>
     </div>
   )
 }
-
-// {
-//   "description": "Compras em padaria",
-//   "value": 16,
-//   "category": "Mercado",
-//   "year": 2019,
-//   "month": 1,
-//   "day": 1,
-//   "yearMonth": "2019-01",
-//   "yearMonthDay": "2019-01-01",
-//   "type": "-"
-// },

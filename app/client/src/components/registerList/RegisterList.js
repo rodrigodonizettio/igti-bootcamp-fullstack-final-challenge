@@ -4,10 +4,10 @@ import Register from '../register/Register'
 import css from './registerList.module.css'
 
 export default function RegisterList(props) {
-  const { onEditClick, onDeleteClick } = props
+  const { onFilterChangeByPeriod, onEditClick, onDeleteClick } = props
 
-  const handleEditClick = () => {
-    onEditClick(true)
+  const handleEditClick = (register) => {
+    onEditClick(register)
   }
 
   const handleDeleteClick = (id) => {
@@ -17,7 +17,11 @@ export default function RegisterList(props) {
   return (
     <div className={css.border}>
       <div>
-        <Register onEditRegisterClick={handleEditClick} onDeleteRegisterClick={handleDeleteClick} />
+        {
+          onFilterChangeByPeriod.map(v => {
+            return <Register key={v._id} onFilterChangeByPeriod={v} onEditRegisterClick={handleEditClick} onDeleteRegisterClick={handleDeleteClick} />
+          })
+        }
       </div>
     </div>
   )
